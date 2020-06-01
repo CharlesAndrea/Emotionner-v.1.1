@@ -24,31 +24,17 @@ db.articles = require("./article.model")(sequelize, Sequelize);
 db.users = require("./user.model")(sequelize, Sequelize);
 db.motivational_phrases = require("./motivational_phrase.model")(sequelize, Sequelize);
 db.managers = require("./manager.model")(sequelize, Sequelize);
-db.article_images = require("./article_image.model")(sequelize, Sequelize);
 db.tasks = require("./task.model")(sequelize, Sequelize);
 
 
 //Associations from here 
-
 //Aricles - Emotions
-db.emotions.belongsToMany(db.articles, {
-  through: "article_emotion",
-  as: "articles",
-  foreignKey: "emotion_id"
+db.emotions.hasMany(db.articles, {
+  as: "articles"
 });
-db.articles.belongsToMany(db.emotions, {
-  through: "article_emotion",
-  as: "emotions",
-  foreignKey: "article_id"
-});
-
-//Article images -  Articles
-db.articles.hasMany(db.article_images, {
-  as: "article_images"
-});
-db.article_images.belongsTo(db.articles, {
-  as: "article"
-});
+db.articles.belongsTo(db.emotions, {
+  as: "emotion"
+})
 
 //Emotions - Motivational phrases 
 db.emotions.hasMany(db.motivational_phrases, {

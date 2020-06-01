@@ -1,18 +1,18 @@
 const db = require("../models");
 const Article = db.articles;
-const Emotion = db.emotions;
 const controllers = {}
 
 //Create new Article
 controllers.createArticle = async (req,res) => {
   // data
-  const { title, content, description, author, premium} = req.body;
+  const { title, content, description, author, image, premium} = req.body;
   // create
   const data = await Article.create({
     title: title,
     content: content,
     description: description,
     author: author,
+    image: image,
     premium: premium
   })
   .then(function(data){
@@ -51,78 +51,4 @@ exports.create = (article) => {
       console.log(">> Error while creating Article: ", err);
     });
 };
-
-//Find all Articles
-exports.findAll = () => {
-  return Article.findAll({
-    include: [
-      {
-        model: Emotion,
-        as: "emotions",
-        attributes: ["id", "name"],
-        through: {
-          attributes: [],
-        }
-      },
-    ],
-  })
-    .then((articles) => {
-      return articles;
-    })
-    .catch((err) => {
-      console.log(">> Error while retrieving Articles: ", err);
-    });
-};
-
-//Find an Article for a given Article id
-exports.findById = (id) => {
-  return Article.findByPk(id, {
-    include: [
-      {
-        model: Emotion,
-        as: "emotions",
-        attributes: ["id", "name"],
-        through: {
-          attributes: [],
-        }
-      },
-    ],
-  })
-    .then((article) => {
-      return article;
-    })
-    .catch((err) => {
-      console.log(">> Error while finding Article: ", err);
-    });
-};
 */
-
-//Add an Emotion to an Article
-exports.addEmotion = (articleId, emotionId) => {
-  return Article.findByPk(articleId)
-    .then((article) => {
-      if (!article) {
-        console.log("Article not found!");
-        return null;
-      }
-      return Emotion.findByPk(emotionId).then((emotion) => {
-        if (!emotion) {
-          console.log("Emotion not found!");
-          return null;
-        }
-
-        article.addEmotion(emotion);
-        console.log(`>> added Emotion id=${emotion.id} to Article id=${article.id}`);
-        return article;
-      });
-    })
-    .catch((err) => {
-      console.log(">> Error while adding Emotion to Article: ", err);
-    });
-};
-
-
-
-
-
-

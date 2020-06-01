@@ -11,19 +11,4 @@ module.exports = app => {
 
   // Create new article
   router.post("/createArticle", articles.createArticle);
-
-  //get the last article created
-  app.get('/lastArticle', function (req, res) {
-    connection.query('select * from article order by id DESC limit 1' + req.query.id, function(error, results, fields) {
-      if(error) {
-        console.log('Error in GET / query')
-      } else {
-        res.send(results);
-      }
-    })
-  })
-
-  //Create new emotion_article
-  router.post("/addEmotion", articles.addEmotion);
-  
 };

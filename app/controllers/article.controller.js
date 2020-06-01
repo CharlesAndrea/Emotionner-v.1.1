@@ -95,6 +95,7 @@ exports.findById = (id) => {
       console.log(">> Error while finding Article: ", err);
     });
 };
+*/
 
 //Add an Emotion to an Article
 exports.addEmotion = (articleId, emotionId) => {
@@ -120,7 +121,6 @@ exports.addEmotion = (articleId, emotionId) => {
     });
 };
 
- */
 
 
 

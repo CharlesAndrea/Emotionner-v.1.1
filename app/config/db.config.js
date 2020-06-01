@@ -13,18 +13,4 @@ module.exports = {
     }
   };
  //b94ddbf3ba12fe:301ebcbd@us-cdbr-east-05.cleardb.net/heroku_e0a3e34e7076e70
-  /*
- module.exports = {
-  HOST: "localhost",
-  USER: "root",
-  PASSWORD: "unimet2020",
-  DB: "emotionner",
-  dialect: "mysql",
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
-};
-*/
+ 

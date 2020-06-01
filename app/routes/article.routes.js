@@ -22,5 +22,8 @@ module.exports = app => {
       }
     })
   })
+
+  //Create new emotion_article
+  router.post("/addEmotion", articles.addEmotion);
   
 };

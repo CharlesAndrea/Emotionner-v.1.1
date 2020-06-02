@@ -16,7 +16,7 @@ module.exports = app => {
   //router.post("/createUser", []users.createUser);
   router.post(
     "/createUser",
-    [verifySignUp.checkDuplicateEmail]
+    //verifySignUp.checkDuplicateEmail
   )
 
   router.post(
@@ -26,7 +26,7 @@ module.exports = app => {
 
   router.get(
     "/profile",
-    [authJWT.verifyToken]
+    authJWT.verifyToken
   )
 
 };

@@ -13,10 +13,11 @@ module.exports = app => {
   app.use('/users', router);
 
   // Create new user
-  //router.post("/createUser", []users.createUser);
+  //router.post("/createUser", users.createUser);
   router.post(
     "/createUser",
-    //verifySignUp.checkDuplicateEmail
+    users.createUser,
+    verifySignUp.checkDuplicateEmail
   )
 
   router.post(

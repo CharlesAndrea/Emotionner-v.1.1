@@ -16,8 +16,8 @@ module.exports = app => {
   //router.post("/createUser", users.createUser);
   router.post(
     "/createUser",
-    users.createUser,
-    verifySignUp.checkDuplicateEmail
+    users.createUser
+    //verifySignUp.checkDuplicateEmail
   )
 
   router.post(

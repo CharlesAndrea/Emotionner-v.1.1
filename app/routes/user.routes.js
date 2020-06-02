@@ -20,14 +20,12 @@ module.exports = app => {
   )
 
   router.post(
-    "/singin",
     controllers.signin
   )
 
   router.get(
-    "",
-    [authJWT.verifyToken],
-    users.userBoard
+    "/profile",
+    [authJWT.verifyToken]
   )
 
 };

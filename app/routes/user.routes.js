@@ -20,6 +20,7 @@ module.exports = app => {
   )
 
   router.post(
+    "/singin",
     controllers.signin
   )
 

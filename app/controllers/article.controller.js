@@ -5,7 +5,7 @@ const controllers = {}
 //Create new Article
 controllers.createArticle = async (req,res) => {
   // data
-  const { title, content, description, author, image, premium} = req.body;
+  const { title, content, description, author, image, premium, emotionid} = req.body;
   // create
   const data = await Article.create({
     title: title,
@@ -13,7 +13,8 @@ controllers.createArticle = async (req,res) => {
     description: description,
     author: author,
     image: image,
-    premium: premium
+    premium: premium,
+    emotionid: emotionid
   })
   .then(function(data){
     return data;

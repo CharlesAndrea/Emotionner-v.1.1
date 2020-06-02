@@ -3,6 +3,9 @@ const db = require("../models");
 const User = db.users;
 const controllers = {}
 
+
+var bcrypt = require("bcryptjs");
+
 //Create new User
 controllers.createUser = async (req,res) => {
   // data
@@ -15,7 +18,7 @@ controllers.createUser = async (req,res) => {
     birthdate: birthdate,
     ocupation: ocupation,
     premium: premium,
-    password: password
+    password: bcrypt.hashSync(password, 8)
   })
   .then(function(data){
     return data;
@@ -32,6 +35,10 @@ controllers.createUser = async (req,res) => {
   });
 }
 module.exports = controllers;
+
+//exports.userBoard = (req, res) => {
+  //res.status(200).send("User Content.");
+//};
 
 /**
  exports.create = (user) => {

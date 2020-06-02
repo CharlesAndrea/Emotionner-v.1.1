@@ -24,8 +24,8 @@ module.exports = (sequelize, DataTypes) => {
 
         },
         image: {
-            type: DataTypes.BLOB,
-            allowNull: false
+            type: DataTypes.STRING(700),
+            allowNull: true
         },
         premium: {
             type: DataTypes.BOOLEAN, 

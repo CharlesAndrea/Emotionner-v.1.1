@@ -4,7 +4,6 @@ const User = db.users;
 const controllers = {}
 
 
-//var bcrypt = require("bcryptjs");
 
 //Create new User
 controllers.createUser = async (req,res) => {
@@ -36,28 +35,5 @@ controllers.createUser = async (req,res) => {
 }
 module.exports = controllers;
 
-//exports.userBoard = (req, res) => {
-  //res.status(200).send("User Content.");
-//};
 
-/**
- exports.create = (user) => {
-    return User.create({
-      name: user.name,
-      lastname: user.lastname,
-      email: user.email,
-      birthdate: user.birthdate,
-      ocupation: user.ocupation,
-      premium: user.premium,
-      password: user.password
-    })
-      .then((user) => {
-        console.log(">> Created user");
-        return user;
-      })
-      .catch((err) => {
-        console.log(">> Error while creating User: ", err);
-      });
-  };
- */
 

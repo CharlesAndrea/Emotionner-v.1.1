@@ -31,10 +31,6 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.BOOLEAN, 
             allowNull: false
 
-        },
-        emotionid: {
-            type: DataTypes.INTEGER,
-            allowNull: false
         }
         
     });

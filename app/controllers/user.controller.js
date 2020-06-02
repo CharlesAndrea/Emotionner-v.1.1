@@ -4,7 +4,7 @@ const User = db.users;
 const controllers = {}
 
 
-var bcrypt = require("bcryptjs");
+//var bcrypt = require("bcryptjs");
 
 //Create new User
 controllers.createUser = async (req,res) => {
@@ -18,7 +18,7 @@ controllers.createUser = async (req,res) => {
     birthdate: birthdate,
     ocupation: ocupation,
     premium: premium,
-    password: bcrypt.hashSync(password, 8)
+    password: password
   })
   .then(function(data){
     return data;

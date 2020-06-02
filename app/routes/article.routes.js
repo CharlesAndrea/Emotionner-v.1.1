@@ -11,5 +11,4 @@ module.exports = app => {
 
   // Create new article
   router.post("/createArticle", articles.createArticle);
-  
 };

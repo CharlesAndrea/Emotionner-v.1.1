@@ -1,19 +1,33 @@
 const db = require("../models");
 const Task = db.tasks;
+const controllers = {};
 
-//Create a new Emotion 
-exports.create = (task) => {
-  return Task.create({
-    description: task.description, 
-    completed: task.completed,
-    date: task.date,
-    time: task.time
+//Create new Task
+controllers.createTask = async (req,res) => {
+  // data
+  const { title, description, completed, start, end, time, userId } = req.body;
+  // create
+  const data = await Task.create({
+    title: title,
+    description: description,
+    completed: completed, 
+    start: start,
+    end: end,
+    time: time, 
+    userId: userId
   })
-    .then((task) => {
-      console.log(">> Created Task: " );
-      return task;
-    })
-    .catch((err) => {
-      console.log(">> Error while creating Task: ", err);
-    });
-};
+  .then(function(data){
+    return data;
+  })
+  .catch(error =>{
+    console.log("Errorazo "+error)
+    return error;
+  })
+  // return res
+  res.status(200).json({
+    success: true,
+    message:"Guardo exitosamente",
+    data: data
+  });
+}
+module.exports = controllers;

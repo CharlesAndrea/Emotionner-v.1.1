@@ -5,22 +5,32 @@ module.exports = (sequelize, DataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
         description: {
             type: DataTypes.STRING(5000),
-            allowNull: false
+            allowNull: true
 
         },
         completed: {
             type: DataTypes.BOOLEAN,
-            default : false
+            default: false,
+            allowNull: true
         },
-        date: {
+        start: {
             type: DataTypes.DATEONLY,
             allowNull: false
 
         },
+        end: {
+            type: DataTypes.DATEONLY,
+            allowNull: false
+        },
         time: {
-            type: DataTypes.TIME
+            type: DataTypes.TIME,
+            allowNull: true
         }
         
     });

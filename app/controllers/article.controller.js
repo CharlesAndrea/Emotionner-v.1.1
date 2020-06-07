@@ -33,23 +33,3 @@ controllers.createArticle = async (req,res) => {
 
 module.exports = controllers;
 
-
-/*
-//Create a new Article 
-exports.create = (article) => {
-  return Article.create({
-    title: article.title,
-    content: article.content,
-    description: article.description,
-    author: article.author,
-    premium: article.premium
-  })
-    .then((article) => {
-      console.log(">> Created Aticle: " );
-      return article;
-    })
-    .catch((err) => {
-      console.log(">> Error while creating Article: ", err);
-    });
-};
-*/

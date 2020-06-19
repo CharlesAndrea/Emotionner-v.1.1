@@ -25,6 +25,7 @@ db.users = require("./user.model")(sequelize, Sequelize);
 db.motivational_phrases = require("./motivational_phrase.model")(sequelize, Sequelize);
 db.managers = require("./manager.model")(sequelize, Sequelize);
 db.tasks = require("./task.model")(sequelize, Sequelize);
+db.registered_emotions = require("./registered_emotion.model")(sequelize, Sequelize); 
 
 
 //Associations from here 
@@ -55,13 +56,13 @@ db.tasks.belongsTo(db.users, {
 //Emotions - Users 
 
 db.users.belongsToMany(db.emotions, {
-  through: "registered_emotion",
+  through: "registered_emotions",
   as: "emotions",
   foreignKey: "user_id"
 });
 
 db.emotions.belongsToMany(db.users, {
-  through: "registered_emotion",
+  through: "registered_emotions",
   as: "users",
   foreignKey: "emotion_id"
 });
@@ -71,16 +72,5 @@ En vez de hacer la locura planteada por el tutorial,
 crear un controlador para dicha tabla y listo 
  */
 
- /**
-  ,
-  description: {
-    type: DataTypes.STRING,
-    allowNull: true
-  },
-  registration_date: {
-      type: DataTypes.DATE,
-      allowNull: false
-  }c
-  */
 
 module.exports = db;

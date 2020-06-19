@@ -25,7 +25,7 @@ db.users = require("./user.model")(sequelize, Sequelize);
 db.motivational_phrases = require("./motivational_phrase.model")(sequelize, Sequelize);
 db.managers = require("./manager.model")(sequelize, Sequelize);
 db.tasks = require("./task.model")(sequelize, Sequelize);
-db.registered_emotions = require("./registered_emotion.model")(sequelize, Sequelize); 
+//db.registered_emotions = require("./registered_emotion.model")(sequelize, Sequelize); 
 
 
 //Associations from here 

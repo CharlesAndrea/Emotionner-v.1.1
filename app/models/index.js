@@ -52,4 +52,39 @@ db.tasks.belongsTo(db.users, {
   as: "user"
 });
 
+//Emotions - Users 
+
+db.users.belongsToMany(db.emotions, {
+  through: "registered_emotion",
+  as: "emotions",
+  foreignKey: "user_id",
+  description: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  registration_date: {
+      type: DataTypes.DATE,
+      allowNull: false
+  }
+});
+
+db.emotions.belongsToMany(db.users, {
+  through: "registered_emotion",
+  as: "users",
+  foreignKey: "emotion_id",
+  description: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  registration_date: {
+      type: DataTypes.DATE,
+      allowNull: false
+  }
+});
+/*
+Esta relación se maneja del siguiente modo: 
+En vez de hacer la locura planteada por el tutorial,
+crear un controlador para dicha tabla y listo 
+ */
+
 module.exports = db;

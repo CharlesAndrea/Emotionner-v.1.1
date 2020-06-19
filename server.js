@@ -4,24 +4,11 @@ const cors = require("cors");
 
 const app = express();
 
-//var whitelist = ["https://emotionner.web.app"]
 var corsOptions = {
   origin: "https://emotionner.web.app",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSucessStatus": 204,
-  
-  /**
-   origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error('Not allowed by CORS'))
-    }
-  },
-  "methods": "GET,HEAD,PUT,PATCH,POST,DELETE", "preflightContinue": false, "optionsSucessStatus": 204,
-  "Access-Control-Allow-Credentials": true
-   */
 }
 app.use(cors(corsOptions));
 

@@ -29,9 +29,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const db = require("./app/models");
-const run = async() => {};
+const controller = require("./app/controllers/task.controller");
+//const run = async () => {};
+const run = async() => {
+  const amandaData = await controller.findUserById(11);
+  console.log(
+    "User id:" + 11,
+    JSON.stringify(amandaData, null, 2)
+  );
+};
 
-db.sequelize.sync(); 
+//db.sequelize.sync();
+db.sequelize.sync().then(() => {
+  console.log("Drop and re-sync db.");
+  run();
+});
+ 
 
 
 // simple route

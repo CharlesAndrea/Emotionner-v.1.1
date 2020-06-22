@@ -1,5 +1,6 @@
 const db = require("../models");
 const Task = db.tasks;
+const User = db.users;
 const controllers = {};
 
 //Create new Task
@@ -29,5 +30,16 @@ controllers.createTask = async (req,res) => {
     message:"Guardo exitosamente",
     data: data
   });
+}
+
+controllers.findUserById = async (userId) => {
+  return User.findByPk(userId, { include: ["tasks"] })
+    .then((user) => {
+      return user;
+    })
+    .catch((err) => {
+      console.log("Bye bye", err);
+    });
+
 }
 module.exports = controllers;

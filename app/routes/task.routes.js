@@ -11,5 +11,6 @@ module.exports = app => {
   
     // Create new user
     router.post("/createTask", tasks.createTask);
+    router.get("/getTasks", tasks.findUserById);
   };
   

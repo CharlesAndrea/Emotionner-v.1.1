@@ -1,5 +1,5 @@
 module.exports = app => {
-    const registered_emotions = require("../controllers/registered.emotion.controller");
+    const registered_emotions = require("../controllers/registered_emotion.controller");
     var router = require("express").Router();
   
     router.use(function(req, res, next) {

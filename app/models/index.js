@@ -26,6 +26,7 @@ db.motivational_phrases = require("./motivational_phrase.model")(sequelize, Sequ
 db.managers = require("./manager.model")(sequelize, Sequelize);
 db.tasks = require("./task.model")(sequelize, Sequelize);
 db.registered_emotions = require("./registered_emotion.model")(sequelize, Sequelize); 
+db.roles = require("../models/role.model.js")(sequelize, Sequelize);
 
 
 //Associations from here 
@@ -54,7 +55,6 @@ db.tasks.belongsTo(db.users, {
 });
 
 //Emotions - Users 
-
 db.users.belongsToMany(db.emotions, {
   through: "registered_emotions",
   as: "emotions",
@@ -70,7 +70,20 @@ db.emotions.belongsToMany(db.users, {
 Esta relación se maneja del siguiente modo: 
 En vez de hacer la locura planteada por el tutorial,
 crear un controlador para dicha tabla y listo 
- */
+*/
 
+//Users - roles
+db.roles.belongsToMany(db.users, {
+  through: "user_roles",
+  foreignKey: "roleId",
+  otherKey: "userId"
+});
+db.users.belongsToMany(db.roles, {
+  through: "user_roles",
+  foreignKey: "userId",
+  otherKey: "roleId"
+});
+
+db.ROLES = ["user", "admin"];
 
 module.exports = db;

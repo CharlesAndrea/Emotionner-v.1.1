@@ -29,11 +29,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //routes
+require('./app/routes/auth.routes')(app);
+require("./app/routes/user.routes")(app);
 require("./app/routes/article.routes")(app);
 require("./app/routes/task.routes")(app); 
 require("./app/routes/registered_emotion.routes")(app); 
-require('./app/routes/auth.routes')(app);
-require("./app/routes/user.routes")(app);
 
 const db = require("./app/models");
 const controller = require("./app/controllers/task.controller");

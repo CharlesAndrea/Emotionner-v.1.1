@@ -11,6 +11,9 @@ module.exports = app => {
 
   // Create new user
   router.post("/createUser", users.createUser);
+
+  //Get all users
+  router.get("/findAllUsers", users.findAllUsers);
 };
 
 

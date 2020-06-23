@@ -7,10 +7,12 @@ module.exports = app => {
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       next();
     });
-    app.use('/users', router); //Not sure
+    app.use('/users', router); 
   
     // Create new user
     router.post("/createTask", tasks.createTask);
     router.get("/getTasks", tasks.findUserById);
+    router.get("/tasks/:userId", tasks.findTasks);
   };
+  
   

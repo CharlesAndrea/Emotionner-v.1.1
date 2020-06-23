@@ -33,6 +33,19 @@ controllers.createUser = async (req,res) => {
     data: data
   });
 }
+
+controllers.findAllUsers = async (req,res) => {
+  return User.findAll()
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Error retrieveing data"
+      });
+    });
+}
 module.exports = controllers;
 
 

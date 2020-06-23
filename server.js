@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+//const jwt = require('jsonwebtoken');
 
 const app = express();
 
@@ -41,7 +42,6 @@ const run = async() => {
 
 //db.sequelize.sync();
 db.sequelize.sync().then(() => {
-  console.log("Drop and re-sync db.");
   run();
 });
  

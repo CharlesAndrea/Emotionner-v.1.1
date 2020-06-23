@@ -40,6 +40,22 @@ controllers.findUserById = async (userId) => {
     .catch((err) => {
       console.log("Bye bye", err);
     });
-
 }
+
+controllers.findTasks = async (req,res) => {
+  const id = req.params.userId;
+  const tasks = await User.findByPk(id, { include: ["tasks"] })
+  .then(function(tasks){
+    return tasks;
+  })
+  .catch(error => {
+    console.log("error"+error)
+    return error;
+  })
+  res.status(200).json({
+    tasks: tasks
+  });
+}
+
 module.exports = controllers;
+

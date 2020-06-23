@@ -12,16 +12,16 @@ const controller = require("../controllers/user.controller");
     next();
   });
 
-  app.get("/api/test/all", controller.allAccess);
+  //app.get("/api/test/all", controller.allAccess);
 
   app.get(
-    "/api/test/user", //ruta del calendario aquí
+    "/users/calendar", //ruta del calendario aquí
     [authJwt.verifyToken],
     controller.userBoard
   );
 
   app.get(
-    "/api/test/admin", //ruta del dashboard de admin aqui
+    "/admin", //ruta del dashboard de admin aqui
     [authJwt.verifyToken, authJwt.isAdmin],
     controller.adminBoard
   );

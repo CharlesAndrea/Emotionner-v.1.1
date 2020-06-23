@@ -16,14 +16,14 @@ const controller = require("../controllers/user.controller");
 
   app.get(
     "/users/calendar", //ruta del calendario aquí
-    [authJwt.verifyToken],
-    controller.userBoard
+    [authJwt.verifyToken]
+    //controller.userBoard
   );
 
   app.get(
     "/admin", //ruta del dashboard de admin aqui
-    [authJwt.verifyToken, authJwt.isAdmin],
-    controller.adminBoard
+    [authJwt.verifyToken, authJwt.isAdmin]
+    //controller.adminBoard
   );
 };
 

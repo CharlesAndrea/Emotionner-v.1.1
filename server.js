@@ -36,6 +36,7 @@ require("./app/routes/task.routes")(app);
 require("./app/routes/registered_emotion.routes")(app); 
 
 const db = require("./app/models");
+const Role = db.roles;
 const controller = require("./app/controllers/task.controller");
 //const run = async () => {};
 const run = async() => {
@@ -45,6 +46,19 @@ const run = async() => {
     JSON.stringify(amandaData, null, 2)
   );
 };
+
+const initial = async() => {
+    Role.create({
+      id: 1,
+      name: "user"
+    });
+  
+    Role.create({
+      id: 2,
+      name: "admin"
+    });
+  
+}
 
 //db.sequelize.sync();
 db.sequelize.sync().then(() => {
@@ -65,7 +79,8 @@ app.listen(PORT, () => {
 });
 
 
- function initial() {
+ /**
+  function initial() {
   Role.create({
     id: 1,
     name: "user"
@@ -76,3 +91,4 @@ app.listen(PORT, () => {
     name: "admin"
   });
 }
+  */

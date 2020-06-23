@@ -49,6 +49,7 @@ const run = async() => {
 //db.sequelize.sync();
 db.sequelize.sync().then(() => {
   run();
+  initial();
 });
  
 // simple route
@@ -63,7 +64,7 @@ app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
 
-/**
+
  function initial() {
   Role.create({
     id: 1,
@@ -75,4 +76,3 @@ app.listen(PORT, () => {
     name: "admin"
   });
 }
- */

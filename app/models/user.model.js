@@ -7,11 +7,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       name: {
         type: DataTypes.STRING,
-        allowNull: false
+        //allowNull: false
       },
       lastname: {
         type: DataTypes.STRING,
-        allowNull: false
+        //allowNull: false
       },
       email: {
         type: DataTypes.STRING,
@@ -19,11 +19,11 @@ module.exports = (sequelize, DataTypes) => {
       },
       birthdate: {
         type: DataTypes.DATEONLY,
-        allowNull: false
+        //allowNull: false
       },
       ocupation: {
         type: DataTypes.STRING,
-        allowNull: false
+        //allowNull: false
       },
       premium: {
         type: DataTypes.BOOLEAN,

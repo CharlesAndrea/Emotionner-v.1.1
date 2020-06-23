@@ -4,6 +4,16 @@ const User = db.users;
 const controllers = {};
 
 
+exports.userBoard = (req, res) => {
+  res.status(200).send("User Content.");
+};
+
+exports.adminBoard = (req, res) => {
+  res.status(200).send("Admin Content.");
+};
+
+
+
 
 //Create new User
 controllers.createUser = async (req,res) => {

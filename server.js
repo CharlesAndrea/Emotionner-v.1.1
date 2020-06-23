@@ -28,6 +28,13 @@ app.use(bodyParser.json());
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//routes
+require("./app/routes/article.routes")(app);
+require("./app/routes/task.routes")(app); 
+require("./app/routes/registered_emotion.routes")(app); 
+require('./app/routes/auth.routes')(app);
+require("./app/routes/user.routes")(app);
+
 const db = require("./app/models");
 const controller = require("./app/controllers/task.controller");
 //const run = async () => {};
@@ -49,11 +56,6 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Charles, Dahan, Gonzalez application." });
 });
 
-require("./app/routes/user.routes")(app);
-require("./app/routes/article.routes")(app);
-require("./app/routes/task.routes")(app); 
-require("./app/routes/registered_emotion.routes")(app); 
-require('./app/routes/auth.routes')(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
@@ -67,14 +69,9 @@ app.listen(PORT, () => {
     id: 1,
     name: "user"
   });
- 
+
   Role.create({
     id: 2,
-    name: "moderator"
-  });
- 
-  Role.create({
-    id: 3,
     name: "admin"
   });
 }

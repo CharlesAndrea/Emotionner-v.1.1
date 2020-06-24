@@ -5,8 +5,7 @@ const cors = require("cors");
 const app = express();
 
 var corsOptions = {
-  //origin: "https://emotionner.web.app",
-  "Access-Control-Allow-Credentials": true,
+  origin: "https://emotionner.web.app",
   "methods": "GET,HEAD,PUT,PATCH,POST,DELETE",
   "preflightContinue": false,
   "optionsSucessStatus": 204,

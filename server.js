@@ -40,29 +40,26 @@ const Role = db.roles;
 const run = async () => {};
 
 const initial = async() => {
-    Role.create({
-      id: 1,
-      name: "user"
-    });
+  Role.create({
+    id: 1,
+    name: "user"
+  });
   
-    Role.create({
-      id: 2,
-      name: "admin"
-    });
-  
+  Role.create({
+    id: 2,
+    name: "admin"
+  });
 }
+
 db.sequelize.sync();
 
- 
 // simple route
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to Charles, Dahan, Gonzalez application." });
 });
-
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}.`);
 });
-

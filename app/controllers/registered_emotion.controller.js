@@ -1,11 +1,9 @@
 const db = require("../models");
-const Op = db.Sequelize.Op;
 const Registered_emotion = db.registered_emotions;
 const controllers = {};
 
 //Registrate new emotion
-controllers.registerEmotion = async (req,res) => {
-  //const user = req.params.userId;  
+controllers.registerEmotion = async (req,res) => { 
   const { user_id, emotion_id, description } = req.body; 
 
   const data = await Registered_emotion.create({
@@ -28,8 +26,35 @@ controllers.registerEmotion = async (req,res) => {
   });  
 }
 
+//Update register
+controllers.updateRegister = async (req,res) => {
+  const id = req.body.id;
+  Registered_emotion.update(req.body, {
+    where: {id: id}
+  })
+  .then(num => {
+    if (num == 1) {
+      res.send({
+        message: "updated successfully."
+      });
+    } else {
+      res.send({
+        message: `Cannot update`
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error updating Register with id=" + id
+    });
+  });
+
+}
+
+//Find register for a given user 
 controllers.findRegisters = async (req,res) => {
-  return Registered_emotion.findAll()
+  const id = req.params.userId;
+  return Registered_emotion.findAll({ where: { user_id: id } })
     .then(data => {
       res.send(data);
     })

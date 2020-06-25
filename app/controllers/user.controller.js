@@ -12,9 +12,6 @@ exports.adminBoard = (req, res) => {
   res.status(200).send("Admin Content.");
 };
 
-
-
-
 //Create new User
 controllers.createUser = async (req,res) => {
   // data
@@ -44,6 +41,7 @@ controllers.createUser = async (req,res) => {
   });
 }
 
+//Retrieve all users
 controllers.findAllUsers = async (req,res) => {
   return User.findAll()
     .then(data => {

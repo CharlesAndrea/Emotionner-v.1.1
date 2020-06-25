@@ -8,6 +8,7 @@ const Op = db.Sequelize.Op;
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
+//Signup a new user
 exports.signup = (req, res) => {
   // Save User to Database
   User.create({
@@ -44,6 +45,7 @@ exports.signup = (req, res) => {
     });
 };
 
+//Signin
 exports.signin = (req, res) => {
   User.findOne({
     where: {

@@ -11,6 +11,9 @@ module.exports = app => {
   
     // Register new emotion
     router.post("/registerEmotion", registered_emotions.registerEmotion);
+    //find register for a given user
     router.get("/registeredEmotions/:userId", registered_emotions.findRegisters);
+    // Update a register
+    router.put("/updateRegister", registered_emotions.updateRegister);
   };
   

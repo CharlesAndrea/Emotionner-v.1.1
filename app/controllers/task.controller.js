@@ -32,6 +32,7 @@ controllers.createTask = async (req,res) => {
   });
 }
 
+//Find tasks for a give user
 controllers.findTasks = async (req,res) => {
   const id = req.params.userId;
   const tasks = await User.findByPk(id, { include: ["tasks"] })
@@ -47,6 +48,7 @@ controllers.findTasks = async (req,res) => {
   });
 }
 
+//Update task
 controllers.updateTask = async (req,res) => {
   const id = req.body.id;
   Task.update(req.body, {

@@ -5,16 +5,16 @@ const controllers = {};
 
 //Registrate new emotion
 controllers.registerEmotion = async (req,res) => {
-  const user = req.params.userId;  
-  const { emotion_id, description } = req.body; 
+  //const user = req.params.userId;  
+  const { user_id, emotion_id, description } = req.body; 
 
-  const registered = await Registered_emotion.create({
-    user_id: user,
+  const data = await Registered_emotion.create({
+    user_id: user_id,
     emotion_id: emotion_id,
     description: description
   })
-  .then(function(registered){
-    return registered;
+  .then(function(data){
+    return data;
   })
   .catch(error =>{
     console.log("Error"+error)
@@ -24,10 +24,9 @@ controllers.registerEmotion = async (req,res) => {
   res.status(200).json({
     success: true,
     message:"Guardo exitosamente",
-    registered: registered
+    data: data
   });  
 }
-
 
 controllers.findRegisters = async (req,res) => {
   return Registered_emotion.findAll()

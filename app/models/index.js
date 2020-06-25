@@ -54,7 +54,8 @@ db.tasks.belongsTo(db.users, {
 });
 
 //Emotions - Users 
-db.users.belongsToMany(db.emotions, {
+/**
+ db.users.belongsToMany(db.emotions, {
   through: "registered_emotions",
   as: "emotions",
   foreignKey: "user_id",
@@ -67,6 +68,45 @@ db.emotions.belongsToMany(db.users, {
   foreignKey: "emotion_id",
   otherKey: "user_id"
 });
+ */
+
+
+const registered_emotions = sequelize.define('registered_emotions', {
+  id: {
+    type: Sequelize.INTEGER(),
+    primaryKey: true,
+    autoIncrement: true
+  },
+  user_id: {
+    type: Sequelize.INTEGER(),
+    allownull: false
+  },
+  emotion_id: {
+    type: Sequelize.INTEGER(),
+    allownull: false
+  },
+  description: Sequelize.TEXT()
+});
+
+db.users.belongsToMany(db.emotions, {
+  through: {
+    model: registered_emotions
+  },
+  as: "emotions",
+  foreignKey: "user_id",
+  otherKey: "emotion_id"
+});
+
+db.emotions.belongsToMany(db.users, {
+  through: {
+    model: registered_emotions
+  },
+  as: "users",
+  foreignKey: "emotion_id",
+  otherKey: "user_id"
+});
+
+
 
 //Users - roles
 db.roles.belongsToMany(db.users, {

@@ -48,24 +48,24 @@ controllers.findTasks = async (req,res) => {
 }
 
 controllers.updateTask = async (req,res) => {
-  const id = req.params.taskId;
+  const id = req.body.id;
   Task.update(req.body, {
     where: {id: id}
   })
   .then(num => {
     if (num == 1) {
       res.send({
-        message: "Tutorial was updated successfully."
+        message: "updated successfully."
       });
     } else {
       res.send({
-        message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+        message: `Cannot update`
       });
     }
   })
   .catch(err => {
     res.status(500).send({
-      message: "Error updating Tutorial with id=" + id
+      message: "Error updating Task with id=" + id
     });
   });
 

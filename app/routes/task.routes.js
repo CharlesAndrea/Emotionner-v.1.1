@@ -14,7 +14,7 @@ module.exports = app => {
     //Get tasks for a user
     router.get("/tasks/:userId", tasks.findTasks);
     // Update a task
-    router.put("tasks/:userId/:taskId", tasks.updateTask);
+    router.put("/updateTask", tasks.updateTask);
   };
   
   

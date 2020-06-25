@@ -56,6 +56,8 @@ controllers.findAllUsers = async (req,res) => {
       });
     });
 }
+
+
 module.exports = controllers;
 
 

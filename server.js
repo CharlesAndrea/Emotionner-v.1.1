@@ -37,15 +37,7 @@ require("./app/routes/registered_emotion.routes")(app);
 
 const db = require("./app/models");
 const Role = db.roles;
-const controller = require("./app/controllers/task.controller");
-//const run = async () => {};
-const run = async() => {
-  const amandaData = await controller.findUserById(11);
-  console.log(
-    "User id:" + 11,
-    JSON.stringify(amandaData, null, 2)
-  );
-};
+const run = async () => {};
 
 const initial = async() => {
     Role.create({
@@ -59,12 +51,8 @@ const initial = async() => {
     });
   
 }
+db.sequelize.sync();
 
-//db.sequelize.sync();
-db.sequelize.sync().then(() => {
-  run();
-  //initial();
-});
  
 // simple route
 app.get("/", (req, res) => {

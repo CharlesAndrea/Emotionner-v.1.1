@@ -57,19 +57,16 @@ db.tasks.belongsTo(db.users, {
 db.users.belongsToMany(db.emotions, {
   through: "registered_emotions",
   as: "emotions",
-  foreignKey: "user_id"
+  foreignKey: "user_id",
+  otherKey: "emotion_id"
 });
 
 db.emotions.belongsToMany(db.users, {
   through: "registered_emotions",
   as: "users",
-  foreignKey: "emotion_id"
+  foreignKey: "emotion_id",
+  otherKey: "user_id"
 });
-/*
-Esta relación se maneja del siguiente modo: 
-En vez de hacer la locura planteada por el tutorial,
-crear un controlador para dicha tabla y listo 
-*/
 
 //Users - roles
 db.roles.belongsToMany(db.users, {

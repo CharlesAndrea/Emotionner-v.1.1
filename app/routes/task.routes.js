@@ -9,10 +9,12 @@ module.exports = app => {
     });
     app.use('/users', router); 
   
-    // Create new user
+    // Create new task
     router.post("/createTask", tasks.createTask);
-    router.get("/getTasks", tasks.findUserById);
+    //Get tasks for a user
     router.get("/tasks/:userId", tasks.findTasks);
+    // Update a task
+    router.put("tasks/:userId/:taskId", tasks.updateTask);
   };
   
   

@@ -7,7 +7,7 @@ module.exports = app => {
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       next();
     });
-    //app.use('/users', router);
+    app.use('/users', router);
   
     // Register new emotion
     router.post("/registerEmotion", registered_emotions.registerEmotion);

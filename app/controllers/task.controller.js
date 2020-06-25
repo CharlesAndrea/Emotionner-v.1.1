@@ -32,16 +32,6 @@ controllers.createTask = async (req,res) => {
   });
 }
 
-controllers.findUserById = async (userId) => {
-  return User.findByPk(userId, { include: ["tasks"] })
-    .then((user) => {
-      return user;
-    })
-    .catch((err) => {
-      console.log("Bye bye", err);
-    });
-}
-
 controllers.findTasks = async (req,res) => {
   const id = req.params.userId;
   const tasks = await User.findByPk(id, { include: ["tasks"] })
@@ -55,6 +45,30 @@ controllers.findTasks = async (req,res) => {
   res.status(200).json({
     tasks: tasks
   });
+}
+
+controllers.updateTask = async (req,res) => {
+  const id = req.params.taskId;
+  Task.update(req.body, {
+    where: {id: id}
+  })
+  .then(num => {
+    if (num == 1) {
+      res.send({
+        message: "Tutorial was updated successfully."
+      });
+    } else {
+      res.send({
+        message: `Cannot update Tutorial with id=${id}. Maybe Tutorial was not found or req.body is empty!`
+      });
+    }
+  })
+  .catch(err => {
+    res.status(500).send({
+      message: "Error updating Tutorial with id=" + id
+    });
+  });
+
 }
 
 module.exports = controllers;

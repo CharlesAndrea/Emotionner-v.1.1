@@ -1,5 +1,4 @@
 const db = require("../models");
-const { where } = require("sequelize/types");
 const Task = db.tasks;
 const User = db.users;
 const controllers = {};
@@ -34,7 +33,7 @@ controllers.createTask = async (req,res) => {
   });
 }
 
-//Find tasks for a give user
+//Find tasks for a given user
 controllers.findTasks = async (req,res) => {
   const id = req.params.userId;
   const tasks = await User.findByPk(id, { include: ["tasks"] } )

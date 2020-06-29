@@ -1,4 +1,5 @@
 const db = require("../models");
+const { where } = require("sequelize/types");
 const Task = db.tasks;
 const User = db.users;
 const controllers = {};
@@ -6,7 +7,7 @@ const controllers = {};
 //Create new Task
 controllers.createTask = async (req,res) => {
   // data
-  const { title, description, completed, start, end, time, userId } = req.body;
+  const { title, description, completed, start, end, time, enabled, userId } = req.body;
   // create
   const data = await Task.create({
     title: title,
@@ -15,6 +16,7 @@ controllers.createTask = async (req,res) => {
     start: start,
     end: end,
     time: time, 
+    enabled: enabled,
     userId: userId
   })
   .then(function(data){
@@ -35,7 +37,7 @@ controllers.createTask = async (req,res) => {
 //Find tasks for a give user
 controllers.findTasks = async (req,res) => {
   const id = req.params.userId;
-  const tasks = await User.findByPk(id, { include: ["tasks"] })
+  const tasks = await User.findByPk(id, { include: ["tasks"] } )
   .then(function(tasks){
     return tasks;
   })

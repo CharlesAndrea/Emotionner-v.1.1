@@ -79,13 +79,13 @@ const registered_emotions = sequelize.define('registered_emotions', {
   },
   user_id: {
     type: Sequelize.INTEGER(),
-    allownull: false,
-    unique: false
+    allownull: false
+    //unique: false
   },
   emotion_id: {
     type: Sequelize.INTEGER(),
-    allownull: false,
-    unique: false
+    allownull: false
+    //unique: false
   },
   description: Sequelize.TEXT()
 });

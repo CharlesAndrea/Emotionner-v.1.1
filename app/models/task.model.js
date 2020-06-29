@@ -33,8 +33,8 @@ module.exports = (sequelize, DataTypes) => {
             allowNull: true
         },
         enabled: {
-            type: DataTypes.INTEGER
-            //allowNull: false
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
         
     });

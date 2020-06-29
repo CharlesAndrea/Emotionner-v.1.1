@@ -51,7 +51,7 @@ const initial = async() => {
   });
 }
 
-db.sequelize.sync();
+db.sequelize.sync({force: true});
 
 // simple route
 app.get("/", (req, res) => {

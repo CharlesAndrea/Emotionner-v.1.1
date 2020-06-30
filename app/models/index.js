@@ -90,8 +90,10 @@ const registered_emotions = sequelize.define('registered_emotions', {
 
 db.users.belongsToMany(db.emotions, {
   through: {
-    model: registered_emotions
+    model: registered_emotions,
+    unique: false
   },
+  constraints: false,
   as: "emotions",
   foreignKey: "user_id",
   otherKey: "emotion_id"
@@ -99,8 +101,10 @@ db.users.belongsToMany(db.emotions, {
 
 db.emotions.belongsToMany(db.users, {
   through: {
-    model: registered_emotions
+    model: registered_emotions,
+    unique: false
   },
+  constraints: false, 
   as: "users",
   foreignKey: "emotion_id",
   otherKey: "user_id"

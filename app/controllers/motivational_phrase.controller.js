@@ -2,6 +2,8 @@ const db = require("../models");
 const Phrase = db.motivational_phrases;
 const Emotion = db.emotions;
 const controllers = {}
+const { QueryTypes } = require('sequelize');
+const { sequelize } = require("../models");
 
 //Create new Phrase
 controllers.createPhrase = async (req,res) => {
@@ -28,20 +30,26 @@ controllers.createPhrase = async (req,res) => {
 }
 
 //Find phrases for a given emotion 
-controllers.findPhrases = async (req,res) => {
-  const emotion = req.body.emotionId;
-  const motivational_phrases = await Emotion.findByPk(emotion, { include: ["motivational_phrases"] } )
-  .then(function(motivational_phrases){
-    return motivational_phrases;
+controllers.selectPhrase = async (req,res) => {
+  const emotionId = req.params.emotionId;
+  const phrase = await sequelize.query(
+    "SELECT * FROM `motivational_phrases` WHERE `emotionId` = :emotionId ORDER BY RAND() LIMIT 1", 
+    {
+      replacements: {emotionId: emotionId},
+      type: QueryTypes.SELECT
+  })
+  .then(function(phrase) {
+    return phrase;
   })
   .catch(error => {
     console.log("error"+error)
     return error;
   })
   res.status(200).json({
-    motivational_phrases: motivational_phrases
+    phrase: phrase
   });
 }
+
 
 //Update phrase
 controllers.updatePhrase = async (req,res) => {

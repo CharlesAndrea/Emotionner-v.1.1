@@ -12,7 +12,8 @@ module.exports = app => {
     // Create new phrase
     router.post("/createPhrase", phrases.createPhrase);
     //Find phrases for a given emotion
-    router.get("/findPhrases", phrases.findPhrases);
+    router.get("/selectPhrase/:emotionId", phrases.selectPhrase);
     //Update phrase
     router.put("/updatePhrase", phrases.updatePhrase);
   };
+  

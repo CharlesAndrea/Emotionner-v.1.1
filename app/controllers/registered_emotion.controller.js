@@ -69,7 +69,8 @@ controllers.findRegisters = async (req,res) => {
 }
 
 //Query 
-controllers.queryEmotions = async (req,res) => {
+/**
+  controllers.queryEmotions = async (req,res) => {
   const userId= req.params.userId;
   const emotionId = await sequelize.query(
     "SELECT * FROM `registered_emotions` WHERE  `id`= (SELECT max(`id`) FROM `registered_emotions` WHERE `user_id` = :userId)", 
@@ -82,6 +83,25 @@ controllers.queryEmotions = async (req,res) => {
     emotionId: emotionId
   }); 
 }
+ */
 
+controllers.queryEmotions = async (req,res) => {
+  const userId= req.params.userId;
+  const emotion = await sequelize.query(
+    "SELECT * FROM `registered_emotions` WHERE  `id`= (SELECT max(`id`) FROM `registered_emotions` WHERE `user_id` = :userId)", 
+    { replacements: { userId: userId},
+      type: QueryTypes.SELECT
+  })
+  .then(function(emotion) {
+    return emotion;
+  })
+  .catch(error => {
+    console.log("error"+error)
+    return error;
+  })
+  res.status(200).json({
+    emotion: emotion
+  });
+}
 
 module.exports = controllers;

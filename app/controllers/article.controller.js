@@ -2,6 +2,8 @@ const db = require("../models");
 const Article = db.articles;
 const Emotion = db.emotions;
 const controllers = {}
+const { QueryTypes } = require('sequelize');
+const { sequelize } = require("../models");
 
 //Create new Article
 controllers.createArticle = async (req,res) => {
@@ -33,20 +35,26 @@ controllers.createArticle = async (req,res) => {
 }
 
 //Find articles for a given emotion 
-controllers.findArticles = async (req,res) => {
-  const emotion = req.body.emotionId;
-  const articles = await Emotion.findByPk(emotion, { include: ["articles"] } )
-  .then(function(articles){
-    return articles;
+controllers.selectArticle = async (req,res) => {
+  const emotionId = req.params.emotionId;
+  const article = await sequelize.query(
+    "SELECT * FROM `articles` WHERE `emotionId` = :emotionId ORDER BY RAND() LIMIT 1", 
+    {
+      replacements: {emotionId: emotionId},
+      type: QueryTypes.SELECT
+  })
+  .then(function(article) {
+    return article;
   })
   .catch(error => {
     console.log("error"+error)
     return error;
   })
   res.status(200).json({
-    articles: articles
+    article: article
   });
 }
+
 
 //Update article
 controllers.updateArticle= async (req,res) => {

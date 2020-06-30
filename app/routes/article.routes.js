@@ -15,4 +15,6 @@ module.exports = app => {
   router.get("/selectArticle/:emotionId", articles.selectArticle);
   //Update article
   router.put("/updateArticle", articles.updateArticle);
+  //Find all articles 
+  router.get("/findAll", articles.findAllArticles);
 };

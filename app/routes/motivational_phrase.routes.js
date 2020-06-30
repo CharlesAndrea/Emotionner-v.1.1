@@ -15,5 +15,7 @@ module.exports = app => {
     router.get("/selectPhrase/:emotionId", phrases.selectPhrase);
     //Update phrase
     router.put("/updatePhrase", phrases.updatePhrase);
+    //Find all phrases 
+    router.get("/findAll", phrases.findAllPhrases);
   };
   

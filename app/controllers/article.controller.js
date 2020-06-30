@@ -38,7 +38,7 @@ controllers.createArticle = async (req,res) => {
 controllers.selectArticle = async (req,res) => {
   const emotionId = req.params.emotionId;
   const article = await sequelize.query(
-    "SELECT * FROM `articles` WHERE `emotionId` = :emotionId ORDER BY RAND() LIMIT 1", 
+    "SELECT * FROM `articles` WHERE `emotionId` = :emotionId ORDER BY RAND()", 
     {
       replacements: {emotionId: emotionId},
       type: QueryTypes.SELECT
@@ -52,6 +52,20 @@ controllers.selectArticle = async (req,res) => {
   })
   res.status(200).json({
     article: article
+  });
+}
+
+//Find all articles 
+controllers.findAllArticles = (req,res) => {
+  Article.findAll()
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving phrases."
+    });
   });
 }
 

@@ -50,6 +50,20 @@ controllers.selectPhrase = async (req,res) => {
   });
 }
 
+//Find all phrases
+controllers.findAllPhrases = (req,res) => {
+  Phrase.findAll()
+  .then(data => {
+    res.send(data);
+  })
+  .catch(err => {
+    res.status(500).send({
+      message:
+        err.message || "Some error occurred while retrieving phrases."
+    });
+  });
+}
+
 
 //Update phrase
 controllers.updatePhrase = async (req,res) => {

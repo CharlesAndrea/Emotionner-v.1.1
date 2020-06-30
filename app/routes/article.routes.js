@@ -11,4 +11,8 @@ module.exports = app => {
 
   // Create new article
   router.post("/createArticle", articles.createArticle);
+  //Find articles for a given emotion
+  router.get("/findArticle", articles.findArticles);
+  //Update article
+  router.put("/updateArticle", articles.updateArticle);
 };

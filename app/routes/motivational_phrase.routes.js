@@ -1,10 +1,18 @@
 module.exports = app => {
-    const motivational_phrases = require("../controllers/motivational_phrase.controller");
-  
+    const phrases = require("../controllers/motivational_phrase.controller");
     var router = require("express").Router();
   
-    // Create new motivational phrase
-    router.post("/", motivational_phrases.create);
-
-    app.use('/api/motivational_phrases', router);
-};
+    router.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      next();
+    });
+    app.use('/phrases', router);
+  
+    // Create new phrase
+    router.post("/createPhrase", phrases.createPhrase);
+    //Find phrases for a given emotion
+    router.get("/findPhrases", phrases.findPhrases);
+    //Update phrase
+    router.put("/updatePhrase", phrases.updatePhrase);
+  };

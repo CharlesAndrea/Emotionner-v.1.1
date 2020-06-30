@@ -34,6 +34,7 @@ require("./app/routes/user.routes")(app);
 require("./app/routes/article.routes")(app);
 require("./app/routes/task.routes")(app); 
 require("./app/routes/registered_emotion.routes")(app); 
+require("./app/routes/motivational_phrase.routes")(app);
 
 const db = require("./app/models");
 const Role = db.roles;

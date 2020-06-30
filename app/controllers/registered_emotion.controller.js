@@ -1,6 +1,8 @@
 const db = require("../models");
 const Registered_emotion = db.registered_emotions;
 const controllers = {};
+const { QueryTypes } = require('sequelize');
+const { sequelize } = require("../models");
 
 //Registrate new emotion
 controllers.registerEmotion = async (req,res) => { 
@@ -64,6 +66,21 @@ controllers.findRegisters = async (req,res) => {
           err.message || "Error retrieveing data"
       });
     });
+}
+
+//Query 
+controllers.queryEmotions = async (req,res) => {
+  const userId= req.params.userId;
+  const emotionId = await sequelize.query(
+    "SELECT * FROM `registered_emotions` WHERE  `id`= (SELECT max(`id`) FROM `registered_emotions` WHERE `user_id` = :userId)", 
+    { replacements: { userId: userId},
+      type: QueryTypes.SELECT
+    });
+  res.status(200).json({
+    success: true,
+    message:"Exito",
+    emotionId: emotionId
+  }); 
 }
 
 

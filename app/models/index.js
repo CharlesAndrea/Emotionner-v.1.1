@@ -54,22 +54,6 @@ db.tasks.belongsTo(db.users, {
 });
 
 //Emotions - Users 
-/**
- db.users.belongsToMany(db.emotions, {
-  through: "registered_emotions",
-  as: "emotions",
-  foreignKey: "user_id",
-  otherKey: "emotion_id"
-});
-
-db.emotions.belongsToMany(db.users, {
-  through: "registered_emotions",
-  as: "users",
-  foreignKey: "emotion_id",
-  otherKey: "user_id"
-});
- */
-
 
 const registered_emotions = sequelize.define('registered_emotions', {
   id: {
@@ -109,8 +93,6 @@ db.emotions.belongsToMany(db.users, {
   foreignKey: "emotion_id",
   otherKey: "user_id"
 });
-
-
 
 //Users - roles
 db.roles.belongsToMany(db.users, {

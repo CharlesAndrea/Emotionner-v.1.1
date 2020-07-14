@@ -80,7 +80,7 @@ controllers.updateTask = async (req,res) => {
 controllers.tasksPerDay = async (req,res) => {
   const userId= req.params.userId;
   const tasksPerDay = await sequelize.query(
-    "SELECT DATE(`updatedAt`) as `date`, COUNT(*) FROM `tasks` WHERE `userId` = :userId AND `completed` = 1 GROUP BY 1", 
+    "SELECT DATE(`updatedAt`) as `date`, COUNT(*) as `count` FROM `tasks` WHERE `userId` = :userId AND `completed` = 1 GROUP BY 1", 
     { replacements: { userId: userId},
       type: QueryTypes.SELECT
   })

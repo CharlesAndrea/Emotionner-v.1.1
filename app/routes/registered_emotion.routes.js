@@ -17,5 +17,9 @@ module.exports = app => {
     router.put("/updateRegister", registered_emotions.updateRegister);
     //Find the last emotion a user has registered 
     router.get("/getLastEmotion/:userId", registered_emotions.queryEmotions);
+    //Emotion of the month 
+    router.get("/emotionOfTheMonth/:userId", registered_emotions.emotionOfTheMonth);
+    //Emotion counter 
+    router.get("/emotionCounter/:userId", registered_emotions.emotionCounter);
   };
   

@@ -68,23 +68,7 @@ controllers.findRegisters = async (req,res) => {
     });
 }
 
-//Query 
-/**
-  controllers.queryEmotions = async (req,res) => {
-  const userId= req.params.userId;
-  const emotionId = await sequelize.query(
-    "SELECT * FROM `registered_emotions` WHERE  `id`= (SELECT max(`id`) FROM `registered_emotions` WHERE `user_id` = :userId)", 
-    { replacements: { userId: userId},
-      type: QueryTypes.SELECT
-    });
-  res.status(200).json({
-    success: true,
-    message:"Exito",
-    emotionId: emotionId
-  }); 
-}
- */
-
+//Retrieve last emotion
 controllers.queryEmotions = async (req,res) => {
   const userId= req.params.userId;
   const emotion = await sequelize.query(
@@ -103,5 +87,48 @@ controllers.queryEmotions = async (req,res) => {
     emotion: emotion
   });
 }
+
+//Emotion of the month 
+controllers.emotionOfTheMonth = async (req,res) => {
+  const userId= req.params.userId;
+  const ofTheMonth = await sequelize.query(
+    "SELECT MONTH(`createdAt`) AS `month`, `emotion_id` AS `emotion`, COUNT(*) AS `registers` FROM `registered_emotions` WHERE `user_id` = :userId AND MONTH(CURDATE()) = MONTH(`createdAt`) GROUP BY `emotion` ORDER BY `registers` DESC LIMIT 1", 
+    { replacements: { userId: userId},
+      type: QueryTypes.SELECT
+  })
+  .then(function(ofTheMonth) {
+    return ofTheMonth;
+  })
+  .catch(error => {
+    console.log("error"+error)
+    return error;
+  })
+  res.status(200).json({
+    ofTheMonth: ofTheMonth
+  });
+}
+
+//Emotion counter
+controllers.emotionCounter = async (req,res) => {
+  const userId = req.params.userId;
+  const counter = await sequelize.query(
+    "SELECT `emotion_id` AS `emotion`, COUNT(*) AS `counter` FROM `registered_emotions` WHERE `user_id` = :userId GROUP BY 1", 
+    { replacements: {userId: userId},
+    type: QueryTypes.SELECT
+  })
+  .then(function(counter) {
+    return counter;
+  })
+  .catch(error => {
+    console.log("error"+error)
+    return error;
+  })
+  res.status(200).json({
+    counter: counter
+  });
+
+}
+//Racha más larga de sentirte bien
+
 
 module.exports = controllers;

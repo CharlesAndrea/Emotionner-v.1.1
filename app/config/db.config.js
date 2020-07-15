@@ -12,5 +12,4 @@ module.exports = {
       idle: 10000
     }
   };
- //b94ddbf3ba12fe:301ebcbd@us-cdbr-east-05.cleardb.net/heroku_e0a3e34e7076e70
  
